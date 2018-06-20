@@ -23,8 +23,16 @@ function getRandomQuote( test ) {
     var source = message.source;
     var citation = message.citation;
     var year = message.year;
+    var occupation = message.occupation;
+    var category = message.category;
   //message to be displayed in the end combining strings
-    message = "<p class='quote'>" + quote + "</p>" + "<p class='source'>" + source
+    message = "<p class='quote'>" + quote + "</p>" + "<p class='source'>" + source + ",";
+  //if there is an occupation add to message, if not delete the variable
+    if(occupation !== undefined){
+      message += "<span class='occupation'> " + occupation + "</span>";
+    } else {
+      delete occupation
+    }
   //if there is a citation add to message, if not delete the variable
     if(citation !== undefined){
       message += "<span class='citation'> " + citation + "</span>";
@@ -39,5 +47,18 @@ function getRandomQuote( test ) {
     }
   //print the message to the html
     document.getElementById("quote-box").innerHTML = message;
-    document.getElementById('loadQuote').addEventListener("click", printQuote, false);
   }
+  //change the quote with every click
+  document.getElementById('loadQuote').addEventListener("click", printQuote, false);
+
+function randomColor() {
+  var Num1 = parseInt(Math.floor(Math.random() * 256));
+  var Num2 = parseInt(Math.floor(Math.random() * 256));
+  var Num3 = parseInt(Math.floor(Math.random() * 256));
+  var rgbnum = "rgb(" + Num1 + "," + Num2 + "," + Num3 + ")";
+  document.getElementById("body").style.backgroundColor = rgbnum;
+  //change the button background color to match body background color
+  document.getElementById("loadQuote").style.backgroundColor = rgbnum;
+}
+  //change the background color with every click
+  document.getElementById("loadQuote").addEventListener("click", randomColor, false);
