@@ -1,7 +1,3 @@
-// event listener to respond to "Show another quote" button clicks
-// when user clicks anywhere on the button, the "printQuote" function is called
-//document.getElementById('loadQuote').addEventListener("click", printQuote, false);
-
 var randomQuote = " ";
 var randomNumber;
 var message;
@@ -62,3 +58,11 @@ function randomColor() {
 }
   //change the background color with every click
   document.getElementById("loadQuote").addEventListener("click", randomColor, false);
+
+
+//function to click the button and generate new quote
+function setClick() {
+  document.getElementById('loadQuote').click();
+}
+//interval to click the button
+var intervalID = window.setInterval(setClick, 8000);
