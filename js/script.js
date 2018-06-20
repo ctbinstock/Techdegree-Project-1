@@ -16,17 +16,28 @@ function getRandomQuote( test ) {
 
   //function to printQuote
   function printQuote() {
+  //call getRandomQuote function and store in variable
     var message = getRandomQuote();
-    if(message.citation !== false){
-      var randomCit = "<p> " + message.citation + "</p>";
-    } else{
-      delete message[message.citation];
-    }
-    if(message.year !== false){
-      var randomYear = "<p>" + message.year + "</p>";
+  //creating variables that will hold string from object
+    var quote = message.quote;
+    var source = message.source;
+    var citation = message.citation;
+    var year = message.year;
+  //message to be displayed in the end combining strings
+    message = "<p class='quote'>" + quote + "</p>" + "<p class='source'>" + source
+  //if there is a citation add to message, if not delete the variable
+    if(citation !== undefined){
+      message += "<span class='citation'> " + citation + "</span>";
     } else {
-      var randomYear = "";
+      delete citation
     }
-    message += "<p class='quote'>" + message.quote + "</p>" + "<p class='source'>" + message.source + "<span class='citation'>" + randomCit + "</span>" + "<span class='year'>" + randomYear + "</span></p>";
+  //if there is a year add to message, if not delete the message
+    if(year !== undefined){
+      message += "<span class='year'>" + year + "</span></p>";
+    } else {
+      delete year
+    }
+  //print the message to the html
     document.getElementById("quote-box").innerHTML = message;
+    document.getElementById('loadQuote').addEventListener("click", printQuote, false);
   }
