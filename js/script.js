@@ -19,14 +19,14 @@ function getRandomQuote( test ) {
     var message = getRandomQuote();
     if(message.citation !== false){
       var randomCit = "<p> " + message.citation + "</p>";
-    } else {
-      var randomCit = " ";
+    } else{
+      delete message[message.citation];
     }
     if(message.year !== false){
       var randomYear = "<p>" + message.year + "</p>";
     } else {
-      var randomYear = " ";
+      var randomYear = "";
     }
-    message = "<h1>" + message.quote + "</h1>" + " <p>" + message.source + "</p>" + " " + randomCit + " " + randomYear;
-    return message;
+    message += "<p class='quote'>" + message.quote + "</p>" + "<p class='source'>" + message.source + "<span class='citation'>" + randomCit + "</span>" + "<span class='year'>" + randomYear + "</span></p>";
+    document.getElementById("quote-box").innerHTML = message;
   }
